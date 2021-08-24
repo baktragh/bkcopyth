@@ -1,6 +1,6 @@
 ;*******************************************************************************
 ;COPY T2/H (C) 1.0 2021 BAKTRA Software
-;Mainline code
+;Mainline code. Assemblw with MADS.
 ;
 ;This utility automatically copies Czechoslovak Turbo 2000 files to the
 ;emulator's H1: device. The utility is designed to be used under emulator, not
@@ -9,7 +9,7 @@
 ;load file, 2. tape image.
 ;
 ;Emulation of an XL/XE system is required, because the copier uses
-;'RAM under ROM' in order to provide a decently sized buffer for input files
+;'RAM under ROM' in order to provide a decently sized buffer for input files.
 ;
 ;Operation:
 ;
@@ -24,9 +24,22 @@
 ;
 ; The process can be interrupted by pressing RESET. The copier simply restarts.
 ;
-; The code of the loader is split in two sections. 
+; The code of the copier is split in two sections. 
 ; 1st section begins at $0400
 ; 2nd section begins at $CC00 - in RAM under ROM
+;
+; Supported emulators
+;
+; atari800 with modified a8cas
+; http://www.arus.net.pl/FUJI/a8cas-util/downloads/
+; modified-atari800-emulator.html
+;
+; atari800 with a8cas 
+; http://a8cas.sourceforge.net/features.html#patch
+;
+; Altirra
+; https://www.virtualdub.org/altirra.html
+; Note: Recompile with HFNAME_LEN EQU 8 to use with Altirra.
 ; 
 ;*******************************************************************************
             ICL 'equates.asm'
@@ -47,7 +60,7 @@
             MI_HIO    EQU 1
             
             
-            HFNAME_LEN  EQU 8
+            HFNAME_LEN  EQU 10
             BUFFER_LEN  EQU 49151-MAIN_BUFFER+1
 ;-------------------------------------------------------------------------------
 ; Mainline code
@@ -485,7 +498,7 @@ M_START     dta d'START'*
 M_START_L   EQU *-M_START
      
 
-M_HIO      dta d'Err H1:'
+M_HIO      dta d'Err H1: '
            dta d'START'*
 M_HIO_L    EQU *-M_HIO
 
@@ -684,9 +697,9 @@ HBUF_R_LEN    EQU *-HBUF_RH
 ;Store the file as a tape image
 ;1. FUJI block
 ;2. pwmc block, sync pulse
-;3. pwmd block with turbo header
+;3. pwmd block with turbo header, pwml block with safety pulse
 ;4. pwmc block, sync pulse
-;5. pwmd block with turbo data
+;5. pwmd block with turbo data, pwml blok with safety pulse
 ;-------------------------------------------------------------------------------
 STORE_TAPEIMAGE
             pha  
@@ -935,4 +948,3 @@ FNCAS       lda HDEV_CAS-1,x
             bne FNCAS            
             pla
             rts
-            
