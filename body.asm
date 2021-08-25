@@ -1,6 +1,6 @@
 ;*******************************************************************************
 ;COPY T2/H (C) 1.0 2021 BAKTRA Software
-;Mainline code. Assemblw with MADS.
+;Mainline code. Assemble with MADS.
 ;
 ;This utility automatically copies Czechoslovak Turbo 2000 files to the
 ;emulator's H1: device. The utility is designed to be used under emulator, not
