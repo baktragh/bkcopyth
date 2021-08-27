@@ -16,10 +16,19 @@ COPY T/H is a special copier that copies Turbo 2000 files to the H1: host device
 
 ## Emulators supported
 
-Atari800 with a8cas extensions, Altirra (only when the copier is recompiled to use 8-character file names). There is no point in running this copier with real hardware as there is no H1: host device.
+Atari800 with a8cas extensions, Altirra (only with 8-character file names).
 - [atari800-a8cas](http://a8cas.sourceforge.net/features.html#patch)
 - [atari800-a8cas modified](http://www.arus.net.pl/FUJI/a8cas-util/downloads/modified-atari800-emulator.html)
 - [Altirra](https://www.virtualdub.org/altirra.html)
+
+There is no point in running this copier with real hardware as there is no H1: host device.
+
+## Binaries
+
+There are two binaries shipped:
+
+- copyth8.xex. Writes 8-character names to the H1: device. Use with the Altirra emulator. Be advised that files can get overwritten.
+- copyth10.xex. Writes 10-character names to the H1: device. Use with atari800-a8cas emulators.
 
 ## Why this copier was written
 

@@ -152,9 +152,13 @@ INC_TPTR9
 ;-------------------------------------------------------------------------------
 ; Payload binary load file
 ;-------------------------------------------------------------------------------
-            dta c'@LDR'                
+            dta c'@COP'                
 PAYLOAD_START
-            INS 'body.xex' 
+.IF FNAME_LEN=8
+            INS 'build\body8.bin'
+.ELSE
+            INS 'build\body10.bin'
+.ENDIF 
 PAYLOAD_END   EQU *
 ;-------------------------------------------------------------------------------
 ; Run segment

@@ -60,7 +60,7 @@
             MI_HIO    EQU 1
             
             
-            HFNAME_LEN  EQU 10
+            HFNAME_LEN  EQU FNAME_LEN
             BUFFER_LEN  EQU 49151-MAIN_BUFFER+1
 ;-------------------------------------------------------------------------------
 ; Mainline code
