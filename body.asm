@@ -39,7 +39,9 @@
 ;
 ; Altirra
 ; https://www.virtualdub.org/altirra.html
-; Note: Recompile with HFNAME_LEN EQU 8 to use with Altirra.
+; Note: Use version 4.10-test2 and newer. This version supports long
+;       file names for the H1: device.
+;
 ; 
 ;*******************************************************************************
             ICL 'equates.asm'
